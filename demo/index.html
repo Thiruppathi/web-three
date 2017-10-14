@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+  <title>web-three demo</title>
+
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+  <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+  <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+  <link rel="import" href="../web-three.html">
+
+  <custom-style>
+    <style is="custom-style" include="demo-pages-shared-styles">
+      .heart {
+        color: red;
+        padding-left: 5px;
+        padding-right: 10px;
+        font-size: 1.5em;
+      }
+      .madeBy {
+        text-align: center;
+        font-family: 'Roboto Mono', 'Rubrik', sans-serif;
+      }
+      .madeBy a {
+        text-decoration: none;
+      }
+    </style>
+  </custom-style>
+</head>
+
+<body>
+  <div class="vertical-section-container centered">
+    <h3>Basic web-three demo</h3>
+    <p>Fetches accounts for the given HTTP Provider </p>
+    <demo-snippet>
+      <template>
+        <web-three web3-rpc="http://localhost:8545"></web-three>
+      </template>
+    </demo-snippet>
+    <p class="madeBy">Made with
+      <span class="heart">❤︎</span>by <a href="https://twitter.com/thiruppathi">Thiru</a>
+    </p>
+  </div>
+</body>
+
+</html>

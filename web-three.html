@@ -1,0 +1,77 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<script src="../web3/dist/web3.min.js"></script>
+
+
+<dom-module id="web-three">
+  <template>
+    <style>
+       :host {
+        display: block;
+        font-family: 'Roboto Mono', sans-serif;
+      }
+
+      .warning {
+        color: red;
+      }
+    </style>
+    <h2>Hello Web3 JS!!</h2>
+    <template is="dom-repeat" items="[[accounts]]" as="account">
+      <p>{{account}}</p>
+    </template>
+    <template is="dom-if" if="{{!isRpcRunning}}">
+      <p class="warning">Please make sure your Test RPC is running</p>
+    </template>
+
+  </template>
+
+  <script>
+    /**
+     * `web-three`
+     * Element for web3.js
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class WebThree extends Polymer.Element {
+      static get is() {
+        return 'web-three';
+      }
+      static get properties() {
+        return {
+          web3: {
+            type: Object,
+            notify: true
+          },
+          web3Rpc: {
+            type: String
+          },
+          accounts: {
+            type: Object,
+            notify: true
+          },
+          isRpcRunning: {
+            type: Boolean,
+            notify: true
+          }
+        };
+      }
+
+      connectedCallback() {
+        super.connectedCallback();
+        this.web3 = new Web3(new Web3.providers.HttpProvider(this.web3Rpc));
+        this.isRpcRunning = this.web3.currentProvider.isConnected();
+        if (this.isRpcRunning) {
+          this.accounts = this.web3.eth.accounts;
+          console.log(typeof (this.accounts), this.accounts[0]);
+        } else {
+          this.accounts = {};
+        }
+
+      }
+
+    }
+
+    window.customElements.define(WebThree.is, WebThree);
+  </script>
+</dom-module>
